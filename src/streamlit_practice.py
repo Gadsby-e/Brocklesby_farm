@@ -4,11 +4,10 @@ Spyder Editor
 
 This is a temporary script file.
 """
-
 import streamlit as st
 import requests 
 import json
-import certifi
+#import certifi
 import pandas as pd
 import numpy as np
 import streamlit as st
