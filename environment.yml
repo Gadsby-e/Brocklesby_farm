@@ -4,6 +4,6 @@ channels:
 dependencies:
   - numpy
   - pandas
-  - streamlit=1.1
+  - streamlit=1.15.1
   - requests
   - matplotlib
