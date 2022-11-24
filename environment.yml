@@ -1,9 +1,0 @@
-name: joes_virtual_enviroment
-channels:
-  - defaults
-dependencies:
-  - numpy
-  - pandas
-  - streamlit==1.15.1
-  - requests
-  - matplotlib
