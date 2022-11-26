@@ -58,6 +58,11 @@ ax.scatter(filtered_config.sales_date, filtered_config.sales_price, marker='o', 
 ax.xaxis.set_major_formatter(chart_xaxis_date_format)
 ax.set_ylabel(chosen_crop+' price £/t')
 
+if chosen_crop.str.contains('Barley', case = False):
+    st.write('yup found barley')
+else:
+    st.write('not barley')
+    
 latest_total_crop_tonnage = filtered_config[filtered_config.sales_date == max(filtered_config.sales_date)].total_crop_tonnage.reset_index(drop = True)[0]
 latest_is_estimate_flag = filtered_config[filtered_config.sales_date == max(filtered_config.sales_date)].total_crop_tonnage_is_estimate.reset_index(drop = True)[0]
 total_sales_tonnage = filtered_config.sales_tonnage.sum()
