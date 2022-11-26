@@ -57,7 +57,7 @@ ax.plot(dict1.keys(), dict1.values(), c = 'black')
 ax.scatter(filtered_config.sales_date, filtered_config.sales_price, marker='o', c="blue")
 ax.xaxis.set_major_formatter(chart_xaxis_date_format)
 if 'barley'.casefold() in chosen_crop.casefold():
-    ax.set_ylabel('*Wheat* price £/t ('+chosen_crop+' usually tracks ~ 10% below)')
+    ax.set_ylabel('*Wheat* price £/t\n('+chosen_crop+' usually tracks ~ 10% below)')
 else:
     ax.set_ylabel(chosen_crop+' price £/t')
 
