@@ -37,8 +37,8 @@ config['sales_date'] = pd.to_datetime(config.sales_date, infer_datetime_format=T
 
 crops = config.crop.drop_duplicates().tolist()
 #chosen_crop = crops[0]
-st.markdown('<div style="text-align: center;">Which crop dashboard would you like to view?</div>', unsafe_allow_html=True)
-col1, col2, col3 = st.columns([1,1,1])
+#st.markdown('<div style="text-align: center;">Which crop dashboard would you like to view?</div>', unsafe_allow_html=True)
+col1, col2, col3 = st.columns([1.5,1,1])
 chosen_crop = col2.radio(
      '',
      (crops[0], crops[1], crops[2]))
