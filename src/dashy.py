@@ -73,12 +73,12 @@ ax.plot(dict1.keys(), dict1.values(), c = 'black')
 
 ax.scatter(filtered_config.sales_date, filtered_config.sales_price, marker='o', c="blue")
 ax.xaxis.set_major_formatter(chart_xaxis_date_format)
-ax.annotate('LIFFE '+chosen_crop+' May-23', (annotate_key, annotate_value))#sort for barley
+#ax.annotate('LIFFE '+chosen_crop+' May-23', (annotate_key, annotate_value))#sort for barley
 ax.set_ylabel('Price (£/t)')
-#if 'barley'.casefold() in chosen_crop.casefold():
-#    ax.set_ylabel('Price *wheat* (£/t)\n('+chosen_crop+' usually tracks ~ 10-2 below)')
-#else:
-#    ax.set_ylabel('Price (£/t)')
+if 'barley'.casefold() in chosen_crop.casefold():
+    ax.annotate('LIFFE Feed Wheat May-23', (annotate_key, annotate_value)) #not ideal non dynamic
+else:
+    ax.annotate('LIFFE '+chosen_crop+' May-23', (annotate_key, annotate_value))#sort for barley
 
 
     
