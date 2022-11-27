@@ -21,6 +21,7 @@ grey_shade  = '0.75'
 chart_xaxis_date_format = mdates.DateFormatter("%b-%y")
  
 #centre justified
+st.markdown('<div style="text-align: centre;">Hello World!</div>', unsafe_allow_html=True)
 st.title("Brocklesby Farm Dashboard")
 st.subheader('Harvest 2022 forward sales')
 
@@ -35,6 +36,7 @@ chosen_crop = st.radio(
      "Which crop dashboard would you like to view?",
      (crops[0], crops[1], crops[2]))
 
+st.markdown('<div style="text-align: left;">Hello World!</div>', unsafe_allow_html=True)
 #now left justified with extra line space
 st.subheader(chosen_crop)
 
