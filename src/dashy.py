@@ -21,7 +21,7 @@ grey_shade  = '0.75'
 chart_xaxis_date_format = mdates.DateFormatter("%b-%y")
  
 #centre justified
-st.markdown('<div style="text-align: centre;">Hello World!</div>', unsafe_allow_html=True)
+st.markdown('<div style="text-align: center;">Hello World!</div>', unsafe_allow_html=True)
 st.title("Brocklesby Farm Dashboard")
 st.subheader('Harvest 2022 forward sales')
 
