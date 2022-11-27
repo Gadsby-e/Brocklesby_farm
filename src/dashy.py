@@ -55,18 +55,20 @@ for i in js['bars']:
 
 dict1 = dict(zip(pd.to_datetime(listo1, format = '%a %b %d %H:%M:%S %Y'),listo2))
 
-
+last_key = (list(dict1)[-1])
+last_value = dict1[last_key]
 
 fig, ax = plt.subplots()
 ax.plot(dict1.keys(), dict1.values(), c = 'black')
 
 ax.scatter(filtered_config.sales_date, filtered_config.sales_price, marker='o', c="blue")
 ax.xaxis.set_major_formatter(chart_xaxis_date_format)
-#ax.annotate('LIFFE '+chosen_crop+' May-23', (sales.Date[i], sales.Price[i] -20))#sort for barley
-if 'barley'.casefold() in chosen_crop.casefold():
-    ax.set_ylabel('LIFFE \bwheat\b May-23 £/t\n('+chosen_crop+' usually tracks ~ 10% below)')
-else:
-    ax.set_ylabel('LIFFE '+chosen_crop+' May-23 £/t')
+ax.annotate('LIFFE '+chosen_crop+' May-23', (last_key, last_value -20))#sort for barley
+ax.set_ylabel('Price (£/t)')
+#if 'barley'.casefold() in chosen_crop.casefold():
+#    ax.set_ylabel('Price *wheat* (£/t)\n('+chosen_crop+' usually tracks ~ 10-2 below)')
+#else:
+#    ax.set_ylabel('Price (£/t)')
 
 
     
@@ -86,6 +88,7 @@ ax_b.bar(filtered_config.sales_date,percentage_of_total_sold, width = 5, color =
 ax_b.set_ylabel('Sale percentage of the total')#note that a width of 1.0 is 1 day
 ax_b.yaxis.set_major_formatter(mtick.PercentFormatter(decimals=False))
 ax_b.set_xlim(ax.get_xlim())
+#tick marks per month, labels every 3month
 ax_b.xaxis.set_major_formatter(chart_xaxis_date_format)
 
 
@@ -93,9 +96,7 @@ pie_chart_values = list([total_sales_tonnage,
                          remaining_tonnage_to_sell])
 
 
-#pie_chart_labels = list(['Average sales price (£'+str(int(total_sales_avg_price))+'/t)',
-#                        'Remaining tonnage to sell ('+str(int(remaining_tonnage_to_sell))+'t)'])
-
+#wrap text on pie too long atm
 pie_chart_labels = list([str(int(total_sales_tonnage))+' tonnes sold at an average price of £'+str(int(total_sales_avg_price))+'/t',
                        str(int(remaining_tonnage_to_sell))+' tonnes left to sell'])
 
