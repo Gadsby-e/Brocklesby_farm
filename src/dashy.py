@@ -65,15 +65,15 @@ for i in js['bars']:
 
 dict1 = dict(zip(pd.to_datetime(listo1, format = '%a %b %d %H:%M:%S %Y'),listo2))
 
-last_key = (list(dict1)[-1])
-last_value = dict1[last_key]
+annotate_key = (list(dict1)[1]) #annotate top left
+annotate_value = max(dict1.values())
 
 fig, ax = plt.subplots()
 ax.plot(dict1.keys(), dict1.values(), c = 'black')
 
 ax.scatter(filtered_config.sales_date, filtered_config.sales_price, marker='o', c="blue")
 ax.xaxis.set_major_formatter(chart_xaxis_date_format)
-ax.annotate('LIFFE '+chosen_crop+' May-23', (last_key, last_value))#sort for barley
+ax.annotate('LIFFE '+chosen_crop+' May-23', (annotate_key, annotate_value))#sort for barley
 ax.set_ylabel('Price (£/t)')
 #if 'barley'.casefold() in chosen_crop.casefold():
 #    ax.set_ylabel('Price *wheat* (£/t)\n('+chosen_crop+' usually tracks ~ 10-2 below)')
