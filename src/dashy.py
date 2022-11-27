@@ -62,10 +62,11 @@ ax.plot(dict1.keys(), dict1.values(), c = 'black')
 
 ax.scatter(filtered_config.sales_date, filtered_config.sales_price, marker='o', c="blue")
 ax.xaxis.set_major_formatter(chart_xaxis_date_format)
+#ax.annotate('LIFFE '+chosen_crop+' May-23', (sales.Date[i], sales.Price[i] -20))#sort for barley
 if 'barley'.casefold() in chosen_crop.casefold():
-    ax.set_ylabel('*Wheat* price £/t\n('+chosen_crop+' usually tracks ~ 10% below)')
+    ax.set_ylabel('LIFFE \bwheat\b May-23 £/t\n('+chosen_crop+' usually tracks ~ 10% below)')
 else:
-    ax.set_ylabel(chosen_crop+' price £/t')
+    ax.set_ylabel('LIFFE '+chosen_crop+' May-23 £/t')
 
 
     
