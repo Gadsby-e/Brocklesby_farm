@@ -107,8 +107,8 @@ pie_chart_values = list([total_sales_tonnage,
 
 
 #wrap text on pie too long atm
-pie_chart_labels = list([str(int(total_sales_tonnage))+' tonnes sold at\n an average price \nof £'+str(int(total_sales_avg_price))+'/t',
-                       str(int(remaining_tonnage_to_sell))+' tonnes left to sell'])
+pie_chart_labels = list([str(int(total_sales_tonnage))+' tonnes sold at\nan average price of\n£'+str(int(total_sales_avg_price))+'/t',
+                       str(int(remaining_tonnage_to_sell))+' tonnes\nleft to sell'])
 
 fig_p, ax_p = plt.subplots()
 
