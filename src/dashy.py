@@ -19,7 +19,8 @@ import matplotlib.dates as mdates
 
 grey_shade  = '0.75'
 chart_xaxis_date_format = mdates.DateFormatter("%b-%y")
-
+ 
+#centre justified
 st.title("Brocklesby Farm Dashboard")
 st.subheader('Harvest 2022 forward sales')
 
@@ -33,6 +34,10 @@ crops = config.crop.drop_duplicates().tolist()
 chosen_crop = st.radio(
      "Which crop dashboard would you like to view?",
      (crops[0], crops[1], crops[2]))
+
+#now left justified with extra line space
+st.subheader(chosen_crop)
+
 filtered_config = config[config.crop == chosen_crop].dropna()
 market_id = filtered_config.market_id.drop_duplicates().reset_index(drop = True)[0]
 
