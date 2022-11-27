@@ -21,7 +21,7 @@ grey_shade  = '0.75'
 chart_xaxis_date_format = mdates.DateFormatter("%b-%y")
 
 st.title("Brocklesby Farm Dashboard")
-st.subheader('2022 season crop sales into futures markets')
+st.subheader('Harvest 2022 forward sales')
 
 config = pd.read_csv('config.csv',
                      dtype = {0: str, 1: str, 2: np.float64, 3: bool, 4: str, 5:np.float64, 6:np.float64})
