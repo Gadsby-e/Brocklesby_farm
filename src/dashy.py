@@ -76,7 +76,7 @@ ax.xaxis.set_major_formatter(chart_xaxis_date_format)
 #ax.annotate('LIFFE '+chosen_crop+' May-23', (annotate_key, annotate_value))#sort for barley
 ax.set_ylabel('Price (£/t)')
 if 'barley'.casefold() in chosen_crop.casefold():
-    ax.annotate('LIFFE Feed Wheat May-23', (annotate_key, annotate_value)) #not ideal non dynamic
+    ax.annotate('LIFFE *Feed Wheat* May-23', (annotate_key, annotate_value)) #not ideal non dynamic
 else:
     ax.annotate('LIFFE '+chosen_crop+' May-23', (annotate_key, annotate_value))#sort for barley
 
