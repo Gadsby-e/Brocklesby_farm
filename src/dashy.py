@@ -21,9 +21,15 @@ grey_shade  = '0.75'
 chart_xaxis_date_format = mdates.DateFormatter("%b-%y")
  
 #centre justified
-st.markdown('<div style="text-align: center;">Hello World!</div>', unsafe_allow_html=True)
-st.title("Brocklesby Farm Dashboard")
-st.subheader('Harvest 2022 forward sales')
+#col1, col2, col3 = st.beta_columns([1,1,1])
+#col2.title("Centered! :)") 
+
+st.markdown("<h1 style='text-align: center; '>Brocklesby Farm Dashboard</h1>", unsafe_allow_html=True)
+
+st.markdown("<h2 style='text-align: center;'>Harvest 2022 forward sales </h2>", unsafe_allow_html=True)
+#st.markdown('<div style="text-align: center;">Hello World!</div>', unsafe_allow_html=True)
+#st.title("Brocklesby Farm Dashboard")
+#st.subheader('Harvest 2022 forward sales')
 
 config = pd.read_csv('config.csv',
                      dtype = {0: str, 1: str, 2: np.float64, 3: bool, 4: str, 5:np.float64, 6:np.float64})
@@ -36,8 +42,9 @@ chosen_crop = st.radio(
      "Which crop dashboard would you like to view?",
      (crops[0], crops[1], crops[2]))
 
-st.markdown('<div style="text-align: left;">Hello World!</div>', unsafe_allow_html=True)
+
 #now left justified with extra line space
+st.write('\n')
 st.subheader(chosen_crop)
 
 filtered_config = config[config.crop == chosen_crop].dropna()
