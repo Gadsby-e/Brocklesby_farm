@@ -23,6 +23,7 @@ logo = Image.open('logo.jpg')
 st.set_page_config(page_icon=logo, page_title = 'Brocklesby Farm')
 grey_shade  = '#abb8c3'
 blue_shade = '#223448'
+black_shade = '#444545'
 chart_xaxis_date_format = mdates.DateFormatter("%b-%y")
  
 #centre justified
@@ -75,9 +76,9 @@ annotate_value = max(dict1.values())
 
 
 fig, ax = plt.subplots()
-ax.plot(dict1.keys(), dict1.values(), c = 'black')
+ax.plot(dict1.keys(), dict1.values(), c = black_shade)
 
-ax.scatter(filtered_config.sales_date, filtered_config.sales_price, marker='o', c="blue")
+ax.scatter(filtered_config.sales_date, filtered_config.sales_price, marker='o', c=blue_shade)
 ax.xaxis.set_major_formatter(chart_xaxis_date_format)
 ax.xaxis.set_minor_locator(mdates.MonthLocator())
 ax.xaxis.set_major_locator(mdates.MonthLocator(bymonth=(3,6,9,12)))
@@ -127,7 +128,7 @@ with col1:
  #st.write(f"你选择了{color1}")
     st.write(str(int(total_sales_tonnage))+' tonnes sold at an average price of £'+str(int(total_sales_avg_price))+'/t')
 with col2:
-    st.write(str(int(remaining_tonnage_to_sell))+' tonnes left to sell')
+    st.write(f"{str(int(remaining_tonnage_to_sell))} tonnes left to sell{black_shade}")
 #wrap text on pie too long atm
 # =============================================================================
 # if tonnage_is_estimate:
