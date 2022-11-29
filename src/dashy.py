@@ -50,8 +50,8 @@ st.write('\n')
 st.subheader(chosen_crop)
 
 filtered_config = config[config.crop == chosen_crop].dropna()
-market_id = filtered_config.market_id.drop_duplicates().reset_index(drop = True)[0]
-market_date = filtered_config.market_date.drop_duplicates().reset_index(drop = True)[0]
+market_id = filtered_config.market_id[0]#.drop_duplicates().reset_index(drop = True)[0]
+market_date = filtered_config.market_date[0]#.drop_duplicates().reset_index(drop = True)[0]
 wheat_crop = next(itertools.takewhile(lambda x: 'wheat'.casefold() in x.casefold(), crops))#extracts wheat crop from list
 
 
