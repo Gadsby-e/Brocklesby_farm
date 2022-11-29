@@ -76,7 +76,7 @@ annotate_value = max(dict1.values())
 
 
 fig, ax = plt.subplots()
-ax.plot(dict1.keys(), dict1.values(), c = black_shade)
+ax.plot(dict1.keys(), dict1.values(), c = grey_shade)
 
 ax.scatter(filtered_config.sales_date, filtered_config.sales_price, marker='o', c=blue_shade)
 ax.xaxis.set_major_formatter(chart_xaxis_date_format)
@@ -121,14 +121,16 @@ ax_b.xaxis.set_major_formatter(chart_xaxis_date_format)
 
 pie_chart_values = list([total_sales_tonnage, 
                          remaining_tonnage_to_sell])
-
-col1, col2 = st.columns([1,1])
-
-with col1:
- #st.write(f"你选择了{color1}")
-    st.write(str(int(total_sales_tonnage))+' tonnes sold at an average price of £'+str(int(total_sales_avg_price))+'/t')
-with col2:
-    st.write(f"{str(int(remaining_tonnage_to_sell))} tonnes left to sell{black_shade}")
+# =============================================================================
+# 
+# col1, col2 = st.columns([1,1])
+# 
+# with col1:
+#  #st.write(f"你选择了{color1}")
+#     st.write(str(int(total_sales_tonnage))+' tonnes sold at an average price of £'+str(int(total_sales_avg_price))+'/t')
+# with col2:
+#     st.write(f"{str(int(remaining_tonnage_to_sell))} tonnes left to sell")
+# =============================================================================
 #wrap text on pie too long atm
 # =============================================================================
 # if tonnage_is_estimate:
@@ -139,10 +141,13 @@ with col2:
 #                              str(int(remaining_tonnage_to_sell))+' tonnes\nleft to sell'])
 # 
 # =============================================================================
+pie_label1 = f"{str(int(remaining_tonnage_to_sell))} tonnes left to sell"
+pie_label2 = str(int(total_sales_tonnage))+' tonnes sold at an average price of £'+str(int(total_sales_avg_price))+'/t'
+
 fig_p, ax_p = plt.subplots()
 
 ax_p.pie(pie_chart_values, colors = [blue_shade, grey_shade]) #greyshade colour labels = pie_chart_labels,
-
+ax_p.legend(labels = [pie_label1,pie_label2], loc = 'upper center')
 st.pyplot(fig)
 st.pyplot(fig_b)
 #st.markdown('<div style="text-align: left;">Hello World!</div>', unsafe_allow_html=True)
