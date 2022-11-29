@@ -32,7 +32,7 @@ st.markdown("<h2 style='text-align: center;'>Harvest 2022 forward sales </h2>", 
 #st.subheader('Harvest 2022 forward sales') #works but wrapped in column
 
 config = pd.read_csv('config.csv',
-                     dtype = {0: str, 1: str, 2: np.float64, 3: bool, 4: str, 5:np.float64, 6:np.float64})
+                     dtype = {0: str, 1: str, 2: str, 3: np.float64, 4: bool, 5: str, 6:np.float64, 7:np.float64})
 config['sales_date'] = pd.to_datetime(config.sales_date, infer_datetime_format=True)
 
 crops = config.crop.drop_duplicates().tolist()
@@ -80,9 +80,9 @@ for label in ax.get_xticklabels(which='major'):
 #ax.annotate('LIFFE '+chosen_crop+' May-23', (annotate_key, annotate_value))#sort for barley
 ax.set_ylabel('Price (£/t)')
 if 'barley'.casefold() in chosen_crop.casefold():
-    ax.annotate('LIFFE *Feed Wheat* May-23', (annotate_key, annotate_value)) #not ideal non dynamic
+    ax.annotate('LIFFE *Feed Wheat* '+market_date, (annotate_key, annotate_value)) #not ideal non dynamic
 else:
-    ax.annotate('LIFFE '+chosen_crop+' May-23', (annotate_key, annotate_value))#sort for barley
+    ax.annotate('LIFFE '+chosen_crop+' '+market_date, (annotate_key, annotate_value))#sort for barley
 
 
     
