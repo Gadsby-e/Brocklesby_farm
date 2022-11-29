@@ -90,7 +90,7 @@ else:
     ax.annotate('LIFFE '+chosen_crop+' '+market_date, (annotate_key, annotate_value))#sort for barley
 
 
-tonnage_is_estimate = filtered_config.total_crop_tonnage_is_estimate[0]    
+tonnage_is_estimate = filtered_config.total_crop_tonnage_is_estimate.drop_duplicates().reset_index(drop = True)[0]    
 latest_total_crop_tonnage = filtered_config[filtered_config.sales_date == max(filtered_config.sales_date)].total_crop_tonnage.reset_index(drop = True)[0]
 latest_is_estimate_flag = filtered_config[filtered_config.sales_date == max(filtered_config.sales_date)].total_crop_tonnage_is_estimate.reset_index(drop = True)[0]
 total_sales_tonnage = filtered_config.sales_tonnage.sum()
