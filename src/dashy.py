@@ -23,7 +23,7 @@ logo = Image.open('logo.jpg')
 st.set_page_config(page_icon=logo, page_title = 'Brocklesby Farm')
 grey_shade  = '#abb8c3'
 blue_shade = '#223448'
-black_shade = '#141414'
+black_shade = '#1a1a1a'
 chart_xaxis_date_format = mdates.DateFormatter("%b-%y")
  
 #centre justified
@@ -153,7 +153,7 @@ fig_p.suptitle(f"{pie_label1} ({pie_label2})", fontsize = 'small')
 #                          bbox_transform=plt.gcf().transFigure)
 st.pyplot(fig)
 st.pyplot(fig_b)
-
+st.write('\n')
 # =============================================================================
 # col1, col2 = st.columns([1,1])
 # 
