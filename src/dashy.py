@@ -23,7 +23,7 @@ logo = Image.open('logo.jpg')
 st.set_page_config(page_icon=logo, page_title = 'Brocklesby Farm')
 grey_shade  = '#abb8c3'
 blue_shade = '#223448'
-black_shade = '#444545'
+black_shade = '#141414'
 chart_xaxis_date_format = mdates.DateFormatter("%b-%y")
  
 #centre justified
@@ -148,7 +148,7 @@ pie_label2 = f"{str(int(remaining_tonnage_to_sell))}t left to sell"
 fig_p, ax_p = plt.subplots()
 
 ax_p.pie(pie_chart_values, colors = [blue_shade, grey_shade]) 
-fig_p.suptitle(f"{pie_label1} ({pie_label2})")
+fig_p.suptitle(f"{pie_label1} ({pie_label2})", fontsize = 'medium')
 #ax_p.legend(labels = [pie_label1,pie_label2], frameon = False, fancybox = False, bbox_to_anchor=(1,0), loc="lower right", 
 #                          bbox_transform=plt.gcf().transFigure)
 st.pyplot(fig)
