@@ -147,7 +147,7 @@ pie_label2 = str(int(total_sales_tonnage))+' tonnes sold at an average price of 
 fig_p, ax_p = plt.subplots()
 
 ax_p.pie(pie_chart_values, colors = [blue_shade, grey_shade]) #greyshade colour labels = pie_chart_labels,
-ax_p.legend(labels = [pie_label1,pie_label2], loc = 'upper center')
+ax_p.legend(labels = [pie_label1,pie_label2], loc = 'best', frameon = False, fancybox = False)
 st.pyplot(fig)
 st.pyplot(fig_b)
 #st.markdown('<div style="text-align: left;">Hello World!</div>', unsafe_allow_html=True)
