@@ -51,6 +51,7 @@ st.subheader(chosen_crop)
 filtered_config = config[config.crop == chosen_crop].dropna()
 market_id = filtered_config.market_id.drop_duplicates().reset_index(drop = True)[0]
 market_date = filtered_config.market_date.drop_duplicates().reset_index(drop = True)[0]
+wheat_crop = next(itertools.takewhile(lambda x: 'wheat'.casefold() in x.casefold(), crops))#extracts wheat crop from list
 
 url = 'https://www.theice.com/marketdata/DelayedMarkets.shtml?getHistoricalChartDataAsJson=&marketId='+market_id+'&historicalSpan=3'
 
@@ -82,7 +83,7 @@ for label in ax.get_xticklabels(which='major'):
 #ax.annotate('LIFFE '+chosen_crop+' May-23', (annotate_key, annotate_value))#sort for barley
 ax.set_ylabel('Price (£/t)')
 if 'barley'.casefold() in chosen_crop.casefold():
-    ax.annotate('LIFFE *Feed Wheat* '+market_date, (annotate_key, annotate_value)) #not ideal non dynamic
+    ax.annotate('LIFFE *'+wheat_crop+'* '+market_date, (annotate_key, annotate_value)) #not ideal non dynamic
 else:
     ax.annotate('LIFFE '+chosen_crop+' '+market_date, (annotate_key, annotate_value))#sort for barley
 
@@ -101,7 +102,10 @@ percentage_of_total_sold = 100*filtered_config.sales_tonnage/latest_total_crop_t
 fig_b, ax_b = plt.subplots()
 ax_b.bar(filtered_config.sales_date,percentage_of_total_sold, width = 5, color = 'blue')
 #ax_b.bar(filtered_config.sales_date,100-percentage_of_total_sold,width = 5, bottom=percentage_of_total_sold, color = grey_shade)
-ax_b.set_ylabel('Sale percentage of the total')#note that a width of 1.0 is 1 day
+if filtered_config.total_crop_tonnage_is_estimate:
+    ax_b.set_ylabel('Sale percentage of the estimated total')#note that a width of 1.0 is 1 day
+else:
+    ax_b.set_ylabel('Sale percentage of the total')#note that a width of 1.0 is 1 day
 ax_b.xaxis.set_minor_locator(mdates.MonthLocator())
 ax_b.xaxis.set_major_locator(mdates.MonthLocator(bymonth=(3,6,9,12)))
 for label in ax_b.get_xticklabels(which='major'):
@@ -117,8 +121,12 @@ pie_chart_values = list([total_sales_tonnage,
 
 
 #wrap text on pie too long atm
-pie_chart_labels = list([str(int(total_sales_tonnage))+' tonnes sold at\nan average price of\n£'+str(int(total_sales_avg_price))+'/t',
-                       str(int(remaining_tonnage_to_sell))+' tonnes\nleft to sell'])
+if filtered_config.total_crop_tonnage_is_estimate:
+    pie_chart_labels = list([str(int(total_sales_tonnage))+' tonnes sold at\nan average price of\n£'+str(int(total_sales_avg_price))+'/t',
+                             str(int(remaining_tonnage_to_sell))+' tonnes\nleft to sell\n(estimate)'])
+else:
+    pie_chart_labels = list([str(int(total_sales_tonnage))+' tonnes sold at\nan average price of\n£'+str(int(total_sales_avg_price))+'/t',
+                             str(int(remaining_tonnage_to_sell))+' tonnes\nleft to sell'])
 
 fig_p, ax_p = plt.subplots()
 
