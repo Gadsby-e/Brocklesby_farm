@@ -54,6 +54,7 @@ market_id = filtered_config.market_id.drop_duplicates().reset_index(drop = True)
 market_date = filtered_config.market_date.drop_duplicates().reset_index(drop = True)[0]
 wheat_crop = next(itertools.takewhile(lambda x: 'wheat'.casefold() in x.casefold(), crops))#extracts wheat crop from list
 
+
 url = 'https://www.theice.com/marketdata/DelayedMarkets.shtml?getHistoricalChartDataAsJson=&marketId='+market_id+'&historicalSpan=3'
 
 r = requests.get(url)
@@ -89,7 +90,7 @@ else:
     ax.annotate('LIFFE '+chosen_crop+' '+market_date, (annotate_key, annotate_value))#sort for barley
 
 
-    
+tonnage_is_estimate = filtered_config.total_crop_tonnage_is_estimate[0]    
 latest_total_crop_tonnage = filtered_config[filtered_config.sales_date == max(filtered_config.sales_date)].total_crop_tonnage.reset_index(drop = True)[0]
 latest_is_estimate_flag = filtered_config[filtered_config.sales_date == max(filtered_config.sales_date)].total_crop_tonnage_is_estimate.reset_index(drop = True)[0]
 total_sales_tonnage = filtered_config.sales_tonnage.sum()
@@ -103,7 +104,7 @@ percentage_of_total_sold = 100*filtered_config.sales_tonnage/latest_total_crop_t
 fig_b, ax_b = plt.subplots()
 ax_b.bar(filtered_config.sales_date,percentage_of_total_sold, width = 5, color = 'blue')
 #ax_b.bar(filtered_config.sales_date,100-percentage_of_total_sold,width = 5, bottom=percentage_of_total_sold, color = grey_shade)
-if filtered_config.total_crop_tonnage_is_estimate:
+if tonnage_is_estimate:
     ax_b.set_ylabel('Sale percentage of the estimated total')#note that a width of 1.0 is 1 day
 else:
     ax_b.set_ylabel('Sale percentage of the total')#note that a width of 1.0 is 1 day
@@ -122,7 +123,7 @@ pie_chart_values = list([total_sales_tonnage,
 
 
 #wrap text on pie too long atm
-if filtered_config.total_crop_tonnage_is_estimate:
+if tonnage_is_estimate:
     pie_chart_labels = list([str(int(total_sales_tonnage))+' tonnes sold at\nan average price of\n£'+str(int(total_sales_avg_price))+'/t',
                              str(int(remaining_tonnage_to_sell))+' tonnes\nleft to sell\n(estimate)'])
 else:
