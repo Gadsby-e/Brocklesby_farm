@@ -19,7 +19,7 @@ import matplotlib.ticker as mtick
 import matplotlib.dates as mdates
 
 logo = Image.open('logo.jpg')
-st.set_page_config(page_icon=logo, page_title = 'JOE')
+st.set_page_config(page_icon=logo, page_title = 'Brocklesby Farm')
 grey_shade  = '0.75'
 chart_xaxis_date_format = mdates.DateFormatter("%b-%y")
  
@@ -73,6 +73,10 @@ ax.plot(dict1.keys(), dict1.values(), c = 'black')
 
 ax.scatter(filtered_config.sales_date, filtered_config.sales_price, marker='o', c="blue")
 ax.xaxis.set_major_formatter(chart_xaxis_date_format)
+ax.xaxis.set_minor_locator(mdates.MonthLocator())
+ax.xaxis.set_major_locator(mdates.MonthLocator(bymonth=(3,6,9,12)))
+for label in ax.get_xticklabels(which='major'):
+    label.set(rotation=30, horizontalalignment='right')
 #ax.annotate('LIFFE '+chosen_crop+' May-23', (annotate_key, annotate_value))#sort for barley
 ax.set_ylabel('Price (£/t)')
 if 'barley'.casefold() in chosen_crop.casefold():
@@ -96,6 +100,8 @@ fig_b, ax_b = plt.subplots()
 ax_b.bar(filtered_config.sales_date,percentage_of_total_sold, width = 5, color = 'blue')
 #ax_b.bar(filtered_config.sales_date,100-percentage_of_total_sold,width = 5, bottom=percentage_of_total_sold, color = grey_shade)
 ax_b.set_ylabel('Sale percentage of the total')#note that a width of 1.0 is 1 day
+ax_b.xaxis.set_minor_locator(mdates.MonthLocator())
+ax.xaxis.set_major_locator(mdates.MonthLocator(bymonth=(3,6,9,12)))
 ax_b.yaxis.set_major_formatter(mtick.PercentFormatter(decimals=False))
 ax_b.set_xlim(ax.get_xlim())
 #tick marks per month, labels every 3month
