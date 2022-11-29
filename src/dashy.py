@@ -50,6 +50,7 @@ st.subheader(chosen_crop)
 
 filtered_config = config[config.crop == chosen_crop].dropna()
 market_id = filtered_config.market_id.drop_duplicates().reset_index(drop = True)[0]
+market_date = filtered_config.market_date.drop_duplicates().reset_index(drop = True)[0]
 
 url = 'https://www.theice.com/marketdata/DelayedMarkets.shtml?getHistoricalChartDataAsJson=&marketId='+market_id+'&historicalSpan=3'
 
@@ -67,6 +68,7 @@ dict1 = dict(zip(pd.to_datetime(listo1, format = '%a %b %d %H:%M:%S %Y'),listo2)
 
 annotate_key = (list(dict1)[1]) #annotate top left
 annotate_value = max(dict1.values())
+
 
 fig, ax = plt.subplots()
 ax.plot(dict1.keys(), dict1.values(), c = 'black')
