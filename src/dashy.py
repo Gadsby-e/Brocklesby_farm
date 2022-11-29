@@ -25,11 +25,11 @@ chart_xaxis_date_format = mdates.DateFormatter("%b-%y")
  
 #centre justified
 
-#st.markdown("<h1 style='text-align: center; '>Brocklesby Farm Dashboard</h1>", unsafe_allow_html=True) #works
-#st.markdown("<h2 style='text-align: center;'>Harvest 2022 forward sales </h2>", unsafe_allow_html=True) #works
+st.markdown("<h1 style='text-align: center; '>Brocklesby Farm Dashboard</h1>", unsafe_allow_html=True) #works
+st.markdown("<h2 style='text-align: center;'>Harvest 2022 forward sales </h2>", unsafe_allow_html=True) #works
 
-st.title("Brocklesby Farm Dashboard") #works but wrapped in column
-st.subheader('Harvest 2022 forward sales') #works but wrapped in column
+#st.title("Brocklesby Farm Dashboard") #works but wrapped in column
+#st.subheader('Harvest 2022 forward sales') #works but wrapped in column
 
 config = pd.read_csv('config.csv',
                      dtype = {0: str, 1: str, 2: np.float64, 3: bool, 4: str, 5:np.float64, 6:np.float64})
@@ -46,7 +46,7 @@ chosen_crop = st.radio(
 
 #now left justified with extra line space
 st.write('\n')
-st.subheader('\b'+chosen_crop+'\b')
+st.subheader(chosen_crop)
 
 filtered_config = config[config.crop == chosen_crop].dropna()
 market_id = filtered_config.market_id.drop_duplicates().reset_index(drop = True)[0]
@@ -101,7 +101,7 @@ ax_b.bar(filtered_config.sales_date,percentage_of_total_sold, width = 5, color =
 #ax_b.bar(filtered_config.sales_date,100-percentage_of_total_sold,width = 5, bottom=percentage_of_total_sold, color = grey_shade)
 ax_b.set_ylabel('Sale percentage of the total')#note that a width of 1.0 is 1 day
 ax_b.xaxis.set_minor_locator(mdates.MonthLocator())
-ax.xaxis.set_major_locator(mdates.MonthLocator(bymonth=(3,6,9,12)))
+ax_b.xaxis.set_major_locator(mdates.MonthLocator(bymonth=(3,6,9,12)))
 for label in ax_b.get_xticklabels(which='major'):
     label.set(rotation=30, horizontalalignment='right')
 ax_b.yaxis.set_major_formatter(mtick.PercentFormatter(decimals=False))
