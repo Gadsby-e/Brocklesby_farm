@@ -10,6 +10,7 @@ import requests
 import json
 import pandas as pd
 import numpy as np
+from PIL import Image
 
 #%matplotlib inline
 import matplotlib
@@ -17,7 +18,8 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as mtick
 import matplotlib.dates as mdates
 
-st.set_page_config(layout = "centered")
+logo = Image.open('logo.png')
+st.set_page_config(page_icon=logo, page_title = 'JOE')
 grey_shade  = '0.75'
 chart_xaxis_date_format = mdates.DateFormatter("%b-%y")
  
