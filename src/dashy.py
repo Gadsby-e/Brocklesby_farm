@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as mtick
 import matplotlib.dates as mdates
 
-st.set_page_config(layout = "centered")
+st.set_page_config(layout = "wide")
 grey_shade  = '0.75'
 chart_xaxis_date_format = mdates.DateFormatter("%b-%y")
  
