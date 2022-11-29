@@ -147,12 +147,13 @@ pie_label2 = f"{str(int(remaining_tonnage_to_sell))}t left to sell"
 
 fig_p, ax_p = plt.subplots()
 
-ax_p.pie(pie_chart_values, colors = [blue_shade, grey_shade]) #greyshade colour labels = pie_chart_labels,
+ax_p.pie(pie_chart_values, colors = [blue_shade, grey_shade]) 
+ax_p.title(f"{pie_label1} ({pie_label2})")
 #ax_p.legend(labels = [pie_label1,pie_label2], frameon = False, fancybox = False, bbox_to_anchor=(1,0), loc="lower right", 
 #                          bbox_transform=plt.gcf().transFigure)
 st.pyplot(fig)
 st.pyplot(fig_b)
-st.write(f"{pie_label1} ({pie_label2})")
+
 # =============================================================================
 # col1, col2 = st.columns([1,1])
 # 
