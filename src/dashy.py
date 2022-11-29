@@ -21,7 +21,8 @@ import matplotlib.dates as mdates
 
 logo = Image.open('logo.jpg')
 st.set_page_config(page_icon=logo, page_title = 'Brocklesby Farm')
-grey_shade  = '0.75'
+grey_shade  = '#abb8c3'
+blue_shade = '#223448'
 chart_xaxis_date_format = mdates.DateFormatter("%b-%y")
  
 #centre justified
@@ -50,8 +51,8 @@ st.write('\n')
 st.subheader(chosen_crop)
 
 filtered_config = config[config.crop == chosen_crop].dropna().reset_index(drop = True)
-market_id = filtered_config.market_id[0]#.drop_duplicates().reset_index(drop = True)[0]
-market_date = filtered_config.market_date[0]#.drop_duplicates().reset_index(drop = True)[0]
+market_id = filtered_config.market_id[0]
+market_date = filtered_config.market_date[0]
 wheat_crop = next(itertools.takewhile(lambda x: 'wheat'.casefold() in x.casefold(), crops))#extracts wheat crop from list
 
 
@@ -90,7 +91,7 @@ else:
     ax.annotate('LIFFE '+chosen_crop+' '+market_date, (annotate_key, annotate_value))#sort for barley
 
 
-tonnage_is_estimate = filtered_config.total_crop_tonnage_is_estimate.drop_duplicates().reset_index(drop = True)[0]    
+tonnage_is_estimate = filtered_config.total_crop_tonnage_is_estimate[0]
 latest_total_crop_tonnage = filtered_config[filtered_config.sales_date == max(filtered_config.sales_date)].total_crop_tonnage.reset_index(drop = True)[0]
 latest_is_estimate_flag = filtered_config[filtered_config.sales_date == max(filtered_config.sales_date)].total_crop_tonnage_is_estimate.reset_index(drop = True)[0]
 total_sales_tonnage = filtered_config.sales_tonnage.sum()
@@ -102,8 +103,7 @@ percentage_of_total_sold = 100*filtered_config.sales_tonnage/latest_total_crop_t
 
 
 fig_b, ax_b = plt.subplots()
-ax_b.bar(filtered_config.sales_date,percentage_of_total_sold, width = 5, color = 'blue')
-#ax_b.bar(filtered_config.sales_date,100-percentage_of_total_sold,width = 5, bottom=percentage_of_total_sold, color = grey_shade)
+ax_b.bar(filtered_config.sales_date,percentage_of_total_sold, width = 5, color = blue_shade)
 if tonnage_is_estimate:
     ax_b.set_ylabel('Sale percentage of the estimated total')#note that a width of 1.0 is 1 day
 else:
@@ -121,18 +121,26 @@ ax_b.xaxis.set_major_formatter(chart_xaxis_date_format)
 pie_chart_values = list([total_sales_tonnage, 
                          remaining_tonnage_to_sell])
 
+col1, col2 = st.columns([1,1])
 
+with col1:
+ #st.write(f"你选择了{color1}")
+    st.write(str(int(total_sales_tonnage))+' tonnes sold at an average price of £'+str(int(total_sales_avg_price))+'/t')
+with col2:
+    st.write(str(int(remaining_tonnage_to_sell))+' tonnes left to sell')
 #wrap text on pie too long atm
-if tonnage_is_estimate:
-    pie_chart_labels = list([str(int(total_sales_tonnage))+' tonnes sold at\nan average price of\n£'+str(int(total_sales_avg_price))+'/t',
-                             str(int(remaining_tonnage_to_sell))+' tonnes\nleft to sell\n(estimate)'])
-else:
-    pie_chart_labels = list([str(int(total_sales_tonnage))+' tonnes sold at\nan average price of\n£'+str(int(total_sales_avg_price))+'/t',
-                             str(int(remaining_tonnage_to_sell))+' tonnes\nleft to sell'])
-
+# =============================================================================
+# if tonnage_is_estimate:
+#     pie_chart_labels = list([str(int(total_sales_tonnage))+' tonnes sold at\nan average price of\n£'+str(int(total_sales_avg_price))+'/t',
+#                              str(int(remaining_tonnage_to_sell))+' tonnes\nleft to sell\n(estimate)'])
+# else:
+#     pie_chart_labels = list([str(int(total_sales_tonnage))+' tonnes sold at\nan average price of\n£'+str(int(total_sales_avg_price))+'/t',
+#                              str(int(remaining_tonnage_to_sell))+' tonnes\nleft to sell'])
+# 
+# =============================================================================
 fig_p, ax_p = plt.subplots()
 
-ax_p.pie(pie_chart_values, labels = pie_chart_labels, colors = ['blue', grey_shade]) #greyshade colour
+ax_p.pie(pie_chart_values, colors = [blue_shade, grey_shade]) #greyshade colour labels = pie_chart_labels,
 
 st.pyplot(fig)
 st.pyplot(fig_b)
