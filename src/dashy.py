@@ -141,15 +141,28 @@ pie_chart_values = list([total_sales_tonnage,
 #                              str(int(remaining_tonnage_to_sell))+' tonnes\nleft to sell'])
 # 
 # =============================================================================
-pie_label1 = f"{str(int(remaining_tonnage_to_sell))} tonnes left to sell"
-pie_label2 = str(int(total_sales_tonnage))+' tonnes sold at an average price of £'+str(int(total_sales_avg_price))+'/t'
+
+pie_label1 = f"{str(int(total_sales_tonnage))}t sold at an average price of £{str(int(total_sales_avg_price))}/t"
+pie_label2 = f"{str(int(remaining_tonnage_to_sell))}t left to sell"
 
 fig_p, ax_p = plt.subplots()
 
 ax_p.pie(pie_chart_values, colors = [blue_shade, grey_shade]) #greyshade colour labels = pie_chart_labels,
-ax_p.legend(labels = [pie_label1,pie_label2], loc = 'best', frameon = False, fancybox = False)
+#ax_p.legend(labels = [pie_label1,pie_label2], frameon = False, fancybox = False, bbox_to_anchor=(1,0), loc="lower right", 
+#                          bbox_transform=plt.gcf().transFigure)
 st.pyplot(fig)
 st.pyplot(fig_b)
+st.write(f"{pie_label1} ({pie_label2})")
+# =============================================================================
+# col1, col2 = st.columns([1,1])
+# 
+# with col1:
+#     st.write(pie_label1)
+# with col2:
+#     st.write(pie_label2)
+# =============================================================================
+
+st.pyplot(fig_p)
 #st.markdown('<div style="text-align: left;">Hello World!</div>', unsafe_allow_html=True)
 #st.markdown('<div style="text-align: right;">Hello World!</div>', unsafe_allow_html=True)
 
@@ -158,4 +171,4 @@ st.pyplot(fig_b)
 #else:
 #    st.write('Actual crop yeild')
         
-st.pyplot(fig_p)  
+  
