@@ -17,14 +17,12 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as mtick
 import matplotlib.dates as mdates
 
+st.set_page_config(layout='centered')
 grey_shade  = '0.75'
 chart_xaxis_date_format = mdates.DateFormatter("%b-%y")
  
 #centre justified
 
-#col2.title("Centered! :)") 
-
-st.set_page_config(layout='centered')
 #st.markdown("<h1 style='text-align: center; '>Brocklesby Farm Dashboard</h1>", unsafe_allow_html=True) #works
 #st.markdown("<h2 style='text-align: center;'>Harvest 2022 forward sales </h2>", unsafe_allow_html=True) #works
 
