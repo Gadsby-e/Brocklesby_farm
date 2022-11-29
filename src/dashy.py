@@ -24,12 +24,12 @@ chart_xaxis_date_format = mdates.DateFormatter("%b-%y")
 
 #col2.title("Centered! :)") 
 
-st.markdown("<h1 style='text-align: center; '>Brocklesby Farm Dashboard</h1>", unsafe_allow_html=True) #works
+st.set_page_config(layout='centered')
+#st.markdown("<h1 style='text-align: center; '>Brocklesby Farm Dashboard</h1>", unsafe_allow_html=True) #works
+#st.markdown("<h2 style='text-align: center;'>Harvest 2022 forward sales </h2>", unsafe_allow_html=True) #works
 
-st.markdown("<h2 style='text-align: center;'>Harvest 2022 forward sales </h2>", unsafe_allow_html=True) #works
-
-#col2.title("Brocklesby Farm Dashboard") #works but wrapped in column
-#col2.subheader('Harvest 2022 forward sales') #works but wrapped in column
+st.title("Brocklesby Farm Dashboard") #works but wrapped in column
+st.subheader('Harvest 2022 forward sales') #works but wrapped in column
 
 config = pd.read_csv('config.csv',
                      dtype = {0: str, 1: str, 2: np.float64, 3: bool, 4: str, 5:np.float64, 6:np.float64})
@@ -38,8 +38,8 @@ config['sales_date'] = pd.to_datetime(config.sales_date, infer_datetime_format=T
 crops = config.crop.drop_duplicates().tolist()
 #chosen_crop = crops[0]
 #st.markdown('<div style="text-align: center;">Which crop dashboard would you like to view?</div>', unsafe_allow_html=True)
-col1, col2, col3 = st.columns([1.5,1,1])
-chosen_crop = col2.radio(
+#col1, col2, col3 = st.columns([1.5,1,1])
+chosen_crop = st.radio(
      '',
      (crops[0], crops[1], crops[2]))
 
