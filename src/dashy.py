@@ -46,7 +46,7 @@ chosen_crop = st.radio(
 
 #now left justified with extra line space
 st.write('\n')
-st.subheader(chosen_crop)
+st.subheader('\b'+chosen_crop+'\b')
 
 filtered_config = config[config.crop == chosen_crop].dropna()
 market_id = filtered_config.market_id.drop_duplicates().reset_index(drop = True)[0]
@@ -102,6 +102,8 @@ ax_b.bar(filtered_config.sales_date,percentage_of_total_sold, width = 5, color =
 ax_b.set_ylabel('Sale percentage of the total')#note that a width of 1.0 is 1 day
 ax_b.xaxis.set_minor_locator(mdates.MonthLocator())
 ax.xaxis.set_major_locator(mdates.MonthLocator(bymonth=(3,6,9,12)))
+for label in ax_b.get_xticklabels(which='major'):
+    label.set(rotation=30, horizontalalignment='right')
 ax_b.yaxis.set_major_formatter(mtick.PercentFormatter(decimals=False))
 ax_b.set_xlim(ax.get_xlim())
 #tick marks per month, labels every 3month
