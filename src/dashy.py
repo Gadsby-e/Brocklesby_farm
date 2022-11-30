@@ -149,12 +149,15 @@ fig_p, ax_p = plt.subplots()
 
 ax_p.pie(pie_chart_values, colors = [blue_shade, grey_shade]) 
 fig_p.tight_layout()
-fig_p.suptitle(f"{pie_label1} ({pie_label2})", fontsize = 'small')
+if tonnage_is_estimate:
+    fig_p.suptitle(f"{pie_label1} ({pie_label2})", fontsize = 'small')
+else:
+    fig_p.suptitle(f"{pie_label1} (estimated {pie_label2})", fontsize = 'small')
 #ax_p.legend(labels = [pie_label1,pie_label2], frameon = False, fancybox = False, bbox_to_anchor=(1,0), loc="lower right", 
 #                          bbox_transform=plt.gcf().transFigure)
 st.pyplot(fig)
 st.pyplot(fig_b)
-st.write('\n')
+st.write('\n\n')
 # =============================================================================
 # col1, col2 = st.columns([1,1])
 # 
