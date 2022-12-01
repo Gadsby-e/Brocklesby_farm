@@ -126,26 +126,6 @@ def absolute_value(val):
     abs_val  = str(int(val/100.*pie_chart_values.sum()))+'t'
     return abs_val
 
-# =============================================================================
-# 
-# col1, col2 = st.columns([1,1])
-# 
-# with col1:
-#  #st.write(f"你选择了{color1}")
-#     st.write(str(int(total_sales_tonnage))+' tonnes sold at an average price of £'+str(int(total_sales_avg_price))+'/t')
-# with col2:
-#     st.write(f"{str(int(remaining_tonnage_to_sell))} tonnes left to sell")
-# =============================================================================
-#wrap text on pie too long atm
-# =============================================================================
-# if tonnage_is_estimate:
-#     pie_chart_labels = list([str(int(total_sales_tonnage))+' tonnes sold at\nan average price of\n£'+str(int(total_sales_avg_price))+'/t',
-#                              str(int(remaining_tonnage_to_sell))+' tonnes\nleft to sell\n(estimate)'])
-# else:
-#     pie_chart_labels = list([str(int(total_sales_tonnage))+' tonnes sold at\nan average price of\n£'+str(int(total_sales_avg_price))+'/t',
-#                              str(int(remaining_tonnage_to_sell))+' tonnes\nleft to sell'])
-# 
-# =============================================================================
 
 pie_label1 = f"{str(int(total_sales_tonnage))}t sold at an average price of £{str(int(total_sales_avg_price))}/t"
 pie_label2 = f"{str(int(remaining_tonnage_to_sell))}t left to sell"
@@ -155,9 +135,9 @@ fig_p, ax_p = plt.subplots()
 ax_p.pie(pie_chart_values, startangle = 90, counterclock = False, autopct=absolute_value, colors = [blue_shade, grey_shade]) 
 fig_p.tight_layout()
 if tonnage_is_estimate:
-    fig_p.suptitle(f"{pie_label1} (estimated {pie_label2})", fontsize = 'small')
+    fig_p.suptitle(f"{pie_label1} (estimated {pie_label2})", fontsize = 'medium')
 else:
-    fig_p.suptitle(f"{pie_label1} ({pie_label2})", fontsize = 'small')
+    fig_p.suptitle(f"{pie_label1} ({pie_label2})", fontsize = 'medium')
 #ax_p.legend(labels = [pie_label1,pie_label2], frameon = False, fancybox = False, bbox_to_anchor=(1,0), loc="lower right", 
 #                          bbox_transform=plt.gcf().transFigure)
 st.pyplot(fig)
