@@ -147,7 +147,7 @@ pie_label2 = f"{str(int(remaining_tonnage_to_sell))}t left to sell"
 
 fig_p, ax_p = plt.subplots()
 
-ax_p.pie(pie_chart_values, autopct='{:d}t', colors = [blue_shade, grey_shade]) 
+ax_p.pie(pie_chart_values, autopct='%.0ft', colors = [blue_shade, grey_shade]) 
 fig_p.tight_layout()
 if tonnage_is_estimate:
     fig_p.suptitle(f"{pie_label1} (estimated {pie_label2})", fontsize = 'small')
