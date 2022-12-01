@@ -111,12 +111,12 @@ else:
     ax_b.set_ylabel('Sale percentage of the total')#note that a width of 1.0 is 1 day
 ax_b.xaxis.set_minor_locator(mdates.MonthLocator())
 ax_b.xaxis.set_major_locator(mdates.MonthLocator(bymonth=(3,6,9,12)))
-for label in ax_b.get_xticklabels(which='major'):
-    label.set(rotation=30, horizontalalignment='right')
 ax_b.yaxis.set_major_formatter(mtick.PercentFormatter(decimals=False))
 ax_b.set_xlim(ax.get_xlim())
 #tick marks per month, labels every 3month
 ax_b.xaxis.set_major_formatter(chart_xaxis_date_format)
+for label in ax_b.get_xticklabels(which='major'):
+    label.set(rotation=30, horizontalalignment='right')
 
 
 pie_chart_values = np.array([total_sales_tonnage,
@@ -135,9 +135,9 @@ fig_p, ax_p = plt.subplots()
 ax_p.pie(pie_chart_values, startangle = 90, counterclock = False, autopct=absolute_value, colors = [blue_shade, grey_shade]) 
 fig_p.tight_layout()
 if tonnage_is_estimate:
-    fig_p.suptitle(f"{pie_label1} (estimated {pie_label2})", fontsize = 'small')
+    fig_p.suptitle(f"{pie_label1} (estimated {pie_label2})", fontsize = 'medium')
 else:
-    fig_p.suptitle(f"{pie_label1} ({pie_label2})", fontsize = 'small')
+    fig_p.suptitle(f"{pie_label1} ({pie_label2})", fontsize = 'medium')
 #ax_p.legend(labels = [pie_label1,pie_label2], frameon = False, fancybox = False, bbox_to_anchor=(1,0), loc="lower right", 
 #                          bbox_transform=plt.gcf().transFigure)
 st.pyplot(fig)
